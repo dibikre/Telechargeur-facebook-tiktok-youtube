@@ -14,7 +14,7 @@ import { ElementFaq } from '../../modeles/faq.modele';
           Foire Aux Questions (FAQ)
         </h1>
         <p class="text-base md:text-lg text-on-surface-variant dark:text-outline-variant">
-          Retrouvez les réponses à toutes vos questions sur l'utilisation de MediaFetch.
+          Retrouvez les réponses à toutes vos questions sur l'utilisation de MicMediaFetch.
         </p>
       </div>
 

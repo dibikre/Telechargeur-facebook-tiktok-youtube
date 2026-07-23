@@ -30,7 +30,7 @@ import { ComposantCarteEtape } from '../../composants/carte-etape/carte-etape.co
         <app-carte-etape
           iconeMat="content_paste"
           titreEtape="2. Collez-le"
-          descriptionEtape="Rendez-vous sur la page d'accueil de MediaFetch et collez l'URL copiée dans le grand champ de saisie central.">
+          descriptionEtape="Rendez-vous sur la page d'accueil de MicMediaFetch et collez l'URL copiée dans le grand champ de saisie central.">
         </app-carte-etape>
 
         <app-carte-etape

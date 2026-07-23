@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
             <mat-icon class="text-xl leading-none">play_arrow</mat-icon>
           </div>
           <span class="text-2xl font-black tracking-tight text-black">
-            MediaFetch
+            MicMediaFetch
           </span>
         </a>
 

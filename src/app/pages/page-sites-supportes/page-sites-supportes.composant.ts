@@ -16,7 +16,7 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
           Plateformes et Sites Supportés
         </h1>
         <p class="text-base md:text-lg text-on-surface-variant dark:text-outline-variant">
-          MediaFetch prend en charge l'extraction rapide en haute définition sur plus de 50 plateformes majeures.
+          MicMediaFetch prend en charge l'extraction rapide en haute définition sur plus de 50 plateformes majeures.
         </p>
       </div>
 

@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
     <footer class="bg-surface-container-low dark:bg-inverse-surface text-primary dark:text-inverse-primary text-sm w-full py-12 border-t border-outline-variant dark:border-outline mt-auto transition-colors duration-300">
       <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 gap-6 max-w-7xl mx-auto">
         <a routerLink="/" class="text-xl font-black text-primary dark:text-inverse-primary tracking-tight">
-          MediaFetch
+          MicMediaFetch
         </a>
 
         <nav class="flex flex-wrap justify-center gap-6 text-on-surface-variant dark:text-outline-variant font-medium">

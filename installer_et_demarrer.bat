@@ -1,6 +1,6 @@
 @echo off
 echo ===================================================
-echo   MediaFetch - Installation et Demarrage du Projet
+echo   MicMediaFetch - Installation et Demarrage du Projet
 echo ===================================================
 
 echo.

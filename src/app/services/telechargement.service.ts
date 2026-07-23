@@ -93,7 +93,7 @@ export class ServiceTelechargement {
       .substring(0, 40);
     const nomComplet = `${nomFichierNettoye}_${format.qualiteLabel.replace(/\s+/g, '')}.${format.extension}`;
 
-    const contenuSynthetique = `[MediaFetch - Fichier Media Enregistré]\n\nTitre: ${media.titre}\nAuteur: ${media.auteur}\nFormat: ${format.nomFormat}\nExtension: ${format.extension}\nDate: ${new Date().toISOString()}`;
+    const contenuSynthetique = `[MicMediaFetch - Fichier Media Enregistré]\n\nTitre: ${media.titre}\nAuteur: ${media.auteur}\nFormat: ${format.nomFormat}\nExtension: ${format.extension}\nDate: ${new Date().toISOString()}`;
     const typeMime = format.typeContenu === 'audio' ? 'audio/mpeg' : 'video/mp4';
 
     const fichierBlob = new Blob([contenuSynthetique], { type: typeMime });
