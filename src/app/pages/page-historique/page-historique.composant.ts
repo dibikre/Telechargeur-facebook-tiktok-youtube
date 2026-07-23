@@ -34,7 +34,7 @@ import { ServiceTelechargement } from '../../services/telechargement.service';
       @if (serviceStockage.historique().length > 0) {
         <div class="flex flex-col gap-4 w-full">
           @for (item of serviceStockage.historique(); track item.identifiant) {
-            <div class="bg-surface-container-lowest dark:bg-inverse-surface p-4 sm:p-5 rounded-2xl border border-outline-variant/40 dark:border-outline shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-primary/50 transition-colors">
+            <div class="bg-white dark:bg-surface-container-high p-4 sm:p-5 rounded-2xl border border-outline-variant/60 dark:border-outline shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-primary/50 transition-colors">
               <div class="flex items-center gap-4">
                 <img [src]="item.media.miniatureUrl"
                      [alt]="item.media.titre"

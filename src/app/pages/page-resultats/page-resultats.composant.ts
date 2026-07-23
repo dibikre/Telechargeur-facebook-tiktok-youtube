@@ -15,7 +15,7 @@ import { ServiceExtracteurMedia } from '../../services/extracteur-media.service'
   template: `
     <main class="flex-grow flex flex-col items-center py-12 md:py-20 px-4 md:px-10 w-full max-w-7xl mx-auto animation-apparition">
       @if (mediaCourant(); as media) {
-        <div class="w-full max-w-5xl glass-card rounded-2xl p-6 md:p-10 border border-surface-variant dark:border-outline/40 shadow-xl">
+        <div class="w-full max-w-5xl bg-white dark:bg-surface-container-high rounded-2xl p-6 md:p-10 border border-outline-variant/60 dark:border-outline shadow-xl">
           <div class="flex flex-col md:flex-row gap-8">
             
             <!-- Video Thumbnail Section -->

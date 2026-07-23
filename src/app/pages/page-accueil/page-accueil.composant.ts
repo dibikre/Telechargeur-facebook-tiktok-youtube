@@ -36,7 +36,7 @@ import { ServiceNotification } from '../../services/notification.service';
 
       <!-- Progress Overlay if Download Active -->
       @if (serviceTelechargement.telechargementEnCours(); as progression) {
-        <div class="w-full max-w-2xl bg-surface-container-lowest dark:bg-inverse-surface border border-primary/30 p-6 rounded-2xl shadow-xl mb-12 animation-apparition">
+        <div class="w-full max-w-2xl bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline p-6 rounded-2xl shadow-xl mb-12 animation-apparition">
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-2">
               <mat-icon class="text-primary animate-spin">sync</mat-icon>

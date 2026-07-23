@@ -10,7 +10,7 @@ import { ServiceNotification } from '../../services/notification.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animation-apparition">
-      <div class="bg-surface dark:bg-inverse-surface border border-outline-variant/40 dark:border-outline rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl text-on-surface dark:text-inverse-on-surface relative">
+      <div class="bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl text-on-surface dark:text-inverse-on-surface relative">
         
         <button (click)="evenementFermer.emit()"
                 type="button"

@@ -34,7 +34,7 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
       <!-- Platforms Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
         @for (plateforme of listeFiltree(); track plateforme.identifiant) {
-          <div class="bg-surface-container-lowest dark:bg-inverse-surface p-6 rounded-2xl border border-outline-variant/40 dark:border-outline shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <div class="bg-white dark:bg-surface-container-high p-6 rounded-2xl border border-outline-variant/60 dark:border-outline shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">

@@ -20,7 +20,7 @@ import { ElementFaq } from '../../modeles/faq.modele';
 
       <div class="flex flex-col gap-4 w-full">
         @for (item of questionsFaq(); track item.identifiant) {
-          <div class="bg-surface-container-lowest dark:bg-inverse-surface border border-outline-variant/50 dark:border-outline rounded-2xl overflow-hidden transition-all duration-200">
+          <div class="bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline rounded-2xl overflow-hidden transition-all duration-200">
             
             <button (click)="basculerQuestion(item.identifiant)"
                     type="button"
