@@ -1,0 +1,15 @@
+<div class="min-h-screen flex flex-col bg-background text-on-background font-sans transition-colors duration-300">
+  <app-barre-navigation></app-barre-navigation>
+
+  <div class="flex-grow flex flex-col pt-20">
+    <router-outlet></router-outlet>
+  </div>
+
+  <app-pied-de-page></app-pied-de-page>
+
+  @if (estModalConnexionOuverte()) {
+    <app-modal-connexion (evenementFermer)="fermerModalConnexion()"></app-modal-connexion>
+  }
+
+  <app-barre-notifications></app-barre-notifications>
+</div>

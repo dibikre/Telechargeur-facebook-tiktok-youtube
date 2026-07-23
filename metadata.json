@@ -1,0 +1,6 @@
+{
+  "name": "MediaFetch - Velocity Stream",
+  "description": "Téléchargeur de vidéos rapide et gratuit pour YouTube, TikTok, Facebook, Instagram, Twitter et plus encore.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
