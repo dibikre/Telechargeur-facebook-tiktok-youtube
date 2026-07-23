@@ -20,7 +20,7 @@ import { ServiceNotification } from '../../services/notification.service';
     <main class="flex-grow flex flex-col items-center justify-center px-4 md:px-10 py-12 md:py-20 max-w-7xl mx-auto w-full">
       <!-- Badge & Hero -->
       <div class="text-center mb-10 max-w-3xl animation-apparition">
-        <h1 class="text-4xl md:text-6xl font-extrabold text-on-background dark:text-inverse-on-surface tracking-tight mb-6 leading-tight">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-[#0000FF] tracking-tight mb-6 leading-tight">
           Téléchargeur de Vidéos Gratuit
         </h1>
 
