@@ -8,7 +8,7 @@ echo [1/2] Installation des dependances avec pnpm...
 call pnpm install
 
 echo.
-echo [2/2] Lancement de l'application Angular sur le port 5399...
-call pnpm exec ng serve --port 5399 --host 0.0.0.0 --disable-host-check
+echo [2/2] Lancement de l'application Angular sur le port 3000...
+call pnpm exec ng serve --port 3000 --host 0.0.0.0 --allowed-hosts=all
 
 pause

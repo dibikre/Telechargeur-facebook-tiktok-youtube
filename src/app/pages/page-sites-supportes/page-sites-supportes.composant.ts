@@ -65,7 +65,11 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
               </div>
 
               <a routerLink="/"
-                 class="text-xs font-bold text-primary dark:text-inverse-primary hover:underline flex items-center gap-1">
+                 (mouseenter)="survolPlateformeId.set(plateforme.identifiant)"
+                 (mouseleave)="survolPlateformeId.set(null)"
+                 [style.background-color]="survolPlateformeId() === plateforme.identifiant ? plateforme.couleurAccent : ''"
+                 [style.color]="survolPlateformeId() === plateforme.identifiant ? '#ffffff' : ''"
+                 class="text-xs font-bold px-4 py-2.5 rounded-xl bg-surface-container dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface transition-all duration-200 flex items-center justify-between shadow-sm active:scale-95">
                 <span>Télécharger sur {{ plateforme.nom }}</span>
                 <mat-icon class="text-sm">chevron_right</mat-icon>
               </a>
@@ -78,6 +82,7 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
 })
 export class ComposantPageSitesSupportes {
   public rechercheMotsCles = signal<string>('');
+  public survolPlateformeId = signal<string | null>(null);
 
   public plateformesOriginales: InformationPlateforme[] = [
     {

@@ -48,23 +48,37 @@ import { MatIconModule } from '@angular/material/icon';
       <div class="flex flex-wrap items-center justify-center gap-3 mt-6 text-sm text-on-surface-variant dark:text-outline-variant font-medium">
         <button (click)="remplirExemple('https://youtube.com/watch?v=demo_data_structures')"
                 type="button"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low dark:bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container transition-all">
-          <mat-icon class="text-lg text-rose-600">play_circle</mat-icon>
-          <span>YouTube</span>
+                class="group flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface hover:bg-[#FF0000] transition-all duration-200 shadow-sm border border-outline-variant/40">
+          <mat-icon class="text-lg text-[#FF0000] group-hover:text-white transition-colors duration-200">play_circle</mat-icon>
+          <span class="group-hover:text-white font-medium transition-colors duration-200">YouTube</span>
         </button>
 
         <button (click)="remplirExemple('https://tiktok.com/@utilisateur/video/7891234')"
                 type="button"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low dark:bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container transition-all">
-          <mat-icon class="text-lg text-slate-800 dark:text-slate-200">music_note</mat-icon>
-          <span>TikTok</span>
+                class="group flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface hover:bg-[#000000] transition-all duration-200 shadow-sm border border-outline-variant/40">
+          <mat-icon class="text-lg text-slate-900 dark:text-slate-100 group-hover:text-white transition-colors duration-200">music_note</mat-icon>
+          <span class="group-hover:text-white font-medium transition-colors duration-200">TikTok</span>
         </button>
 
         <button (click)="remplirExemple('https://facebook.com/watch/?v=123456789')"
                 type="button"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low dark:bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container transition-all">
-          <mat-icon class="text-lg text-blue-600">facebook</mat-icon>
-          <span>Facebook</span>
+                class="group flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface hover:bg-[#1877F2] transition-all duration-200 shadow-sm border border-outline-variant/40">
+          <mat-icon class="text-lg text-[#1877F2] group-hover:text-white transition-colors duration-200">facebook</mat-icon>
+          <span class="group-hover:text-white font-medium transition-colors duration-200">Facebook</span>
+        </button>
+
+        <button (click)="remplirExemple('https://instagram.com/reel/C123456789')"
+                type="button"
+                class="group flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface hover:bg-[#E1306C] transition-all duration-200 shadow-sm border border-outline-variant/40">
+          <mat-icon class="text-lg text-[#E1306C] group-hover:text-white transition-colors duration-200">camera_alt</mat-icon>
+          <span class="group-hover:text-white font-medium transition-colors duration-200">Instagram</span>
+        </button>
+
+        <button (click)="remplirExemple('https://x.com/utilisateur/status/123456789')"
+                type="button"
+                class="group flex items-center gap-1.5 px-4 py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface hover:bg-[#1DA1F2] transition-all duration-200 shadow-sm border border-outline-variant/40">
+          <mat-icon class="text-lg text-[#1DA1F2] group-hover:text-white transition-colors duration-200">tag</mat-icon>
+          <span class="group-hover:text-white font-medium transition-colors duration-200">Twitter / X</span>
         </button>
       </div>
     </div>
