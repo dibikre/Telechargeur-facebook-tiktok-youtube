@@ -70,20 +70,6 @@ import { MatIconModule } from '@angular/material/icon';
           <mat-icon class="text-base sm:text-lg text-black">facebook</mat-icon>
           <span class="text-black font-medium">Facebook</span>
         </button>
-
-        <button (click)="remplirExemple('https://instagram.com/reel/C123456789')"
-                type="button"
-                class="group flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high hover:bg-[#E1306C] transition-all duration-200 shadow-sm border border-outline-variant/40">
-          <mat-icon class="text-base sm:text-lg text-black">camera_alt</mat-icon>
-          <span class="text-black font-medium">Instagram</span>
-        </button>
-
-        <button (click)="remplirExemple('https://x.com/utilisateur/status/123456789')"
-                type="button"
-                class="group flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-surface-container-low dark:bg-surface-container-high hover:bg-[#1DA1F2] transition-all duration-200 shadow-sm border border-outline-variant/40">
-          <mat-icon class="text-base sm:text-lg text-black">tag</mat-icon>
-          <span class="text-black font-medium">Twitter / X</span>
-        </button>
       </div>
     </div>
   `
