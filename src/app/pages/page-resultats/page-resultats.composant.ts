@@ -13,13 +13,13 @@ import { ServiceExtracteurMedia } from '../../services/extracteur-media.service'
   imports: [MatIconModule, RouterLink, ComposantCarteFormat],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main class="flex-grow flex flex-col items-center py-12 md:py-20 px-4 md:px-10 w-full max-w-7xl mx-auto animation-apparition">
+    <main class="flex-grow flex flex-col items-center py-8 sm:py-12 md:py-20 px-4 sm:px-6 md:px-10 w-full max-w-7xl mx-auto animation-apparition">
       @if (mediaCourant(); as media) {
-        <div class="w-full max-w-5xl bg-white dark:bg-surface-container-high rounded-2xl p-6 md:p-10 border border-outline-variant/60 dark:border-outline shadow-xl">
-          <div class="flex flex-col md:flex-row gap-8">
+        <div class="w-full max-w-5xl bg-white dark:bg-surface-container-high rounded-2xl p-4 sm:p-6 md:p-10 border border-outline-variant/60 dark:border-outline shadow-xl">
+          <div class="flex flex-col md:flex-row gap-6 sm:gap-8">
             
             <!-- Video Thumbnail Section -->
-            <div class="w-full md:w-5/12 flex flex-col gap-4">
+            <div class="w-full md:w-5/12 flex flex-col gap-3 sm:gap-4">
               <div class="aspect-video bg-surface-container-high rounded-xl overflow-hidden relative shadow-sm border border-outline-variant/30 group">
                 <img [src]="media.miniatureUrl"
                      [alt]="media.titre"
@@ -27,17 +27,17 @@ import { ServiceExtracteurMedia } from '../../services/extracteur-media.service'
                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 
                 <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <div class="w-14 h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white shadow-lg">
-                    <mat-icon class="text-4xl leading-none">play_circle</mat-icon>
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white shadow-lg">
+                    <mat-icon class="text-3xl sm:text-4xl leading-none">play_circle</mat-icon>
                   </div>
                 </div>
               </div>
 
               <div class="flex flex-col">
-                <h2 class="text-xl font-bold text-on-surface dark:text-inverse-on-surface line-clamp-2 leading-snug">
+                <h2 class="text-lg sm:text-xl font-bold text-on-surface dark:text-inverse-on-surface line-clamp-2 leading-snug">
                   {{ media.titre }}
                 </h2>
-                <p class="text-on-surface-variant dark:text-outline-variant text-xs font-semibold mt-2">
+                <p class="text-on-surface-variant dark:text-outline-variant text-xs font-semibold mt-1 sm:mt-2">
                   Durée: {{ media.dureeTexte }} • {{ media.auteur }}
                 </p>
               </div>
@@ -45,11 +45,11 @@ import { ServiceExtracteurMedia } from '../../services/extracteur-media.service'
 
             <!-- Download Options Section -->
             <div class="w-full md:w-7/12 flex flex-col">
-              <div class="flex items-center justify-between mb-6">
-                <h3 class="text-2xl font-black text-on-surface dark:text-inverse-on-surface tracking-tight">
+              <div class="flex items-center justify-between mb-4 sm:mb-6">
+                <h3 class="text-xl sm:text-2xl font-black text-on-surface dark:text-inverse-on-surface tracking-tight">
                   Sélectionnez le format
                 </h3>
-                <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary dark:text-inverse-primary uppercase">
+                <span class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-primary/10 text-primary dark:text-inverse-primary uppercase">
                   {{ media.plateformeNom }}
                 </span>
               </div>

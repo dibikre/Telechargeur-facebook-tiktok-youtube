@@ -10,47 +10,53 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
   imports: [FormsModule, RouterLink, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main class="flex-grow flex flex-col items-center py-12 md:py-20 px-4 md:px-10 max-w-7xl mx-auto w-full animation-apparition">
-      <div class="text-center mb-12 max-w-3xl">
-        <h1 class="text-3xl md:text-5xl font-black text-[#0000FF] dark:text-[#0000FF] tracking-tight mb-4">
+    <main class="flex-grow flex flex-col items-center py-8 sm:py-12 md:py-20 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto w-full animation-apparition">
+      <div class="text-center mb-8 sm:mb-12 max-w-3xl">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-[#0000FF] dark:text-[#0000FF] tracking-tight mb-3 sm:mb-4">
           Plateformes et Sites Supportés
         </h1>
-        <p class="text-base md:text-lg text-black dark:text-black">
+        <p class="text-sm sm:text-base md:text-lg text-black dark:text-black">
           MicMediaFetch prend en charge l'extraction rapide en haute définition pour Facebook, YouTube et TikTok.
         </p>
       </div>
 
       <!-- Search Filter Input -->
-      <div class="w-full max-w-md mb-10">
+      <div class="w-full max-w-md mb-8 sm:mb-10">
         <div class="relative">
-          <mat-icon class="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant">search</mat-icon>
-          <input type="text"
-                 [(ngModel)]="rechercheMotsCles"
-                 placeholder="Rechercher une plateforme (Facebook, YouTube, TikTok)..."
-                 class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest dark:bg-inverse-surface border border-outline-variant/60 dark:border-outline rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+          <mat-icon class="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant">
+            search
+          </mat-icon>
+          <input
+            type="text"
+            [(ngModel)]="rechercheMotsCles"
+            placeholder="Rechercher une plateforme (Facebook, YouTube, TikTok)..."
+            class="w-full pl-11 pr-4 py-2.5 sm:py-3 bg-white dark:bg-white border border-outline-variant/60 dark:border-outline rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          />
         </div>
       </div>
 
       <!-- Platforms Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
         @for (plateforme of listeFiltree(); track plateforme.identifiant) {
-          <div class="bg-white dark:bg-surface-container-high p-6 rounded-2xl border border-outline-variant/60 dark:border-outline shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <div class="bg-white dark:bg-surface-container-high p-5 sm:p-6 rounded-2xl border border-outline-variant/60 dark:border-outline shadow-sm hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary dark:text-inverse-primary">
                     <mat-icon>{{ plateforme.iconeMat }}</mat-icon>
                   </div>
-                  <h3 class="font-bold text-lg text-on-surface dark:text-inverse-on-surface">
+
+                  <h3 class="font-bold text-lg text-black dark:text-black">
                     {{ plateforme.nom }}
                   </h3>
                 </div>
+
                 <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
                   Actif
                 </span>
               </div>
 
-              <p class="text-xs text-on-surface-variant dark:text-outline-variant mb-4 leading-relaxed">
+              <p class="text-xs text-black dark:text-black mb-4 leading-relaxed">
                 {{ plateforme.description }}
               </p>
             </div>
@@ -58,18 +64,18 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
             <div>
               <div class="flex flex-wrap gap-1.5 mb-4">
                 @for (fmt of plateforme.formatsInclus; track fmt) {
-                  <span class="px-2 py-0.5 rounded bg-surface-container dark:bg-surface-container-high text-[11px] font-semibold text-on-surface-variant dark:text-outline-variant">
+                  <span class="px-2 py-0.5 rounded bg-surface-container dark:bg-surface-container-high text-[11px] font-semibold text-black dark:text-black">
                     {{ fmt }}
                   </span>
                 }
               </div>
 
               <a routerLink="/"
-                 (mouseenter)="survolPlateformeId.set(plateforme.identifiant)"
-                 (mouseleave)="survolPlateformeId.set(null)"
-                 [style.background-color]="survolPlateformeId() === plateforme.identifiant ? plateforme.couleurAccent : ''"
-                 [style.color]="survolPlateformeId() === plateforme.identifiant ? '#ffffff' : ''"
-                 class="text-xs font-bold px-4 py-2.5 rounded-xl bg-surface-container dark:bg-surface-container-high text-on-surface dark:text-inverse-on-surface transition-all duration-200 flex items-center justify-between shadow-sm active:scale-95">
+                (mouseenter)="survolPlateformeId.set(plateforme.identifiant)"
+                (mouseleave)="survolPlateformeId.set(null)"
+                [style.background-color]="survolPlateformeId() === plateforme.identifiant ? plateforme.couleurAccent : ''"
+                [style.color]="survolPlateformeId() === plateforme.identifiant ? '#ffffff' : ''"
+                class="text-xs font-bold px-4 py-2.5 rounded-xl bg-surface-container dark:bg-surface-container-high text-black dark:text-black transition-all duration-200 flex items-center justify-between shadow-sm active:scale-95">
                 <span>Télécharger sur {{ plateforme.nom }}</span>
                 <mat-icon class="text-sm">chevron_right</mat-icon>
               </a>

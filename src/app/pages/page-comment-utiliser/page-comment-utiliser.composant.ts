@@ -9,18 +9,18 @@ import { ComposantCarteEtape } from '../../composants/carte-etape/carte-etape.co
   imports: [RouterLink, MatIconModule, ComposantCarteEtape],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main class="flex-grow flex flex-col items-center justify-center px-4 md:px-10 py-16 md:py-24 max-w-7xl mx-auto w-full animation-apparition">
+    <main class="flex-grow flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 py-10 sm:py-16 md:py-24 max-w-7xl mx-auto w-full animation-apparition">
       
-      <div class="text-center mb-16 max-w-3xl">
-        <h1 class="text-3xl md:text-5xl font-black text-blue-600 dark:text-blue-600 tracking-tight mb-4">
+      <div class="text-center mb-10 sm:mb-16 max-w-3xl">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-blue-600 dark:text-blue-600 tracking-tight mb-3 sm:mb-4">
           Comment télécharger des vidéos
         </h1>
-        <p class="text-base md:text-lg text-black dark:text-black font-normal">
+        <p class="text-sm sm:text-base md:text-lg text-black dark:text-black font-normal">
           Obtenez vos médias préférés hors ligne en trois étapes simples et rapides.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full">
         <app-carte-etape
           iconeMat="content_copy"
           titreEtape="1. Copiez le lien"

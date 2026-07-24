@@ -8,39 +8,39 @@ import { ElementFaq } from '../../modeles/faq.modele';
   imports: [MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main class="flex-grow flex flex-col items-center py-12 md:py-20 px-4 md:px-10 max-w-4xl mx-auto w-full animation-apparition">
-      <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-5xl font-black text-[#0000FF] dark:text-[#0000FF] tracking-tight mb-4">
+    <main class="flex-grow flex flex-col items-center py-8 sm:py-12 md:py-20 px-4 sm:px-6 md:px-10 max-w-4xl mx-auto w-full animation-apparition">
+      <div class="text-center mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-3xl md:text-5xl font-black text-[#0000FF] dark:text-[#0000FF] tracking-tight mb-3 sm:mb-4">
           Foire Aux Questions (FAQ)
         </h1>
 
-        <p class="text-base md:text-lg text-black dark:text-black">
+        <p class="text-sm sm:text-base md:text-lg text-black dark:text-black">
           Retrouvez les réponses à toutes vos questions sur l'utilisation de MicMediaFetch.
         </p>
       </div>
 
-      <div class="flex flex-col gap-4 w-full">
-        @for (item of questionsFaq(); track item.identifiant) {
-          <div class="bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline rounded-2xl overflow-hidden transition-all duration-200">
-            
-            <button (click)="basculerQuestion(item.identifiant)"
-                    type="button"
-                    class="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-base text-on-surface dark:text-inverse-on-surface hover:text-primary transition-colors">
-              <span>{{ item.question }}</span>
-              <mat-icon class="transition-transform duration-300"
-                        [class.rotate-180]="item.estDeplie">
-                expand_more
-              </mat-icon>
-            </button>
+     <div class="flex flex-col gap-3 sm:gap-4 w-full">
+      @for (item of questionsFaq(); track item.identifiant) {
+        <div class="bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline rounded-2xl overflow-hidden transition-all duration-200">
 
-            @if (item.estDeplie) {
-              <div class="px-6 pb-6 text-sm text-on-surface-variant dark:text-outline-variant leading-relaxed border-t border-outline-variant/30 pt-4 animation-apparition">
-                {{ item.reponse }}
-              </div>
-            }
-          </div>
-        }
-      </div>
+          <button (click)="basculerQuestion(item.identifiant)"
+                  type="button"
+                  class="w-full text-left p-4 sm:p-6 flex items-center justify-between gap-3 sm:gap-4 font-bold text-sm sm:text-base text-black dark:text-black transition-colors">
+            <span>{{ item.question }}</span>
+            <mat-icon class="text-black dark:text-black transition-transform duration-300 shrink-0"
+                      [class.rotate-180]="item.estDeplie">
+              expand_more
+            </mat-icon>
+          </button>
+
+          @if (item.estDeplie) {
+            <div class="px-4 sm:px-6 pb-4 sm:pb-6 text-xs sm:text-sm text-black dark:text-black leading-relaxed border-t border-outline-variant/30 pt-3 sm:pt-4 animation-apparition">
+              {{ item.reponse }}
+            </div>
+          }
+        </div>
+      }
+    </div>
     </main>
   `
 })

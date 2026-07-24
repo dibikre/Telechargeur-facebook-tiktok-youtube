@@ -17,32 +17,32 @@ import { ServiceNotification } from '../../services/notification.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main class="flex-grow flex flex-col items-center justify-center px-4 md:px-10 py-12 md:py-20 max-w-7xl mx-auto w-full">
+    <main class="flex-grow flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 py-8 sm:py-12 md:py-20 max-w-7xl mx-auto w-full">
       <!-- Badge & Hero -->
-      <div class="text-center mb-10 max-w-3xl animation-apparition">
-        <h1 class="text-4xl md:text-6xl font-extrabold text-[#0000FF] tracking-tight mb-6 leading-tight">
+      <div class="text-center mb-8 sm:mb-10 max-w-3xl animation-apparition">
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-[#0000FF] tracking-tight mb-4 sm:mb-6 leading-tight">
           Téléchargeur de Vidéos Gratuit
         </h1>
 
-        <p class="text-lg md:text-xl text-black dark:text-black font-normal leading-relaxed">
+        <p class="text-base sm:text-lg md:text-xl text-black dark:text-black font-normal leading-relaxed">
           Téléchargez des vidéos depuis YouTube, TikTok, Facebook et des centaines d'autres sites en haute qualité. Sans inscription.
         </p>
       </div>
 
       <!-- Search Box -->
-      <div class="w-full mb-16">
+      <div class="w-full mb-10 sm:mb-16">
         <app-barre-recherche (evenementSoumissionUrl)="traiterSoumissionUrl($event)"></app-barre-recherche>
       </div>
 
       <!-- Progress Overlay if Download Active -->
       @if (serviceTelechargement.telechargementEnCours(); as progression) {
-        <div class="w-full max-w-2xl bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline p-6 rounded-2xl shadow-xl mb-12 animation-apparition">
+        <div class="w-full max-w-2xl bg-white dark:bg-surface-container-high border border-outline-variant/60 dark:border-outline p-4 sm:p-6 rounded-2xl shadow-xl mb-8 sm:mb-12 animation-apparition">
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-2">
               <mat-icon class="text-primary animate-spin">sync</mat-icon>
-              <span class="font-bold text-sm text-on-surface dark:text-inverse-on-surface">Téléchargement en cours...</span>
+              <span class="font-bold text-xs sm:text-sm text-on-surface dark:text-inverse-on-surface">Téléchargement en cours...</span>
             </div>
-            <span class="font-black text-primary text-sm">{{ progression.pourcentage }}%</span>
+            <span class="font-black text-primary text-xs sm:text-sm">{{ progression.pourcentage }}%</span>
           </div>
 
           <div class="w-full h-3 bg-surface-container dark:bg-surface-container-high rounded-full overflow-hidden">
@@ -50,7 +50,7 @@ import { ServiceNotification } from '../../services/notification.service';
                  [style.width.%]="progression.pourcentage"></div>
           </div>
 
-          <div class="flex justify-between items-center text-xs text-on-surface-variant dark:text-outline-variant mt-2 font-medium">
+          <div class="flex justify-between items-center text-xs text-on-surface-variant dark:text-outline-variant mt-2 font-medium flex-wrap gap-1">
             <span>{{ (progression.octetsTelecharges / 1000000).toFixed(1) }} MB / {{ (progression.octetsTotaux / 1000000).toFixed(1) }} MB</span>
             <span>Vitesse: {{ progression.vitesseKo }} KB/s</span>
           </div>
@@ -58,7 +58,7 @@ import { ServiceNotification } from '../../services/notification.service';
       }
 
       <!-- Features Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mt-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 w-full mt-2 sm:mt-4">
         <app-carte-caracteristique
           iconeMat="high_quality"
           titreCaracteristique="Haute Qualité"

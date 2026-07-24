@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="bg-white dark:bg-surface-container-high rounded-2xl p-8 border border-outline-variant/60 dark:border-outline shadow-sm hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+    <div class="bg-white dark:bg-surface-container-high rounded-2xl p-6 sm:p-8 border border-outline-variant/60 dark:border-outline shadow-sm hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
       <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-125"></div>
 
       <div class="w-16 h-16 rounded-2xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-6 text-primary dark:text-inverse-primary relative z-10">
