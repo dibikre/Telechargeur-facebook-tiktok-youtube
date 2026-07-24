@@ -86,17 +86,32 @@ export class ComposantPageAccueil {
   private serviceNotification = inject(ServiceNotification);
   private routeur = inject(Router);
 
+  public estEnCoursAnalyse = false;
+
   public traiterSoumissionUrl(adresseUrl: string): void {
-    const resultat = this.serviceExtracteur.analyserLienMedia(adresseUrl);
-    if (resultat.estValide && resultat.media) {
-      this.routeur.navigate(['/resultats'], {
-        state: {
-          media: resultat.media,
-          formats: resultat.formatsDisponibles
+    if (this.estEnCoursAnalyse) return;
+
+    this.estEnCoursAnalyse = true;
+    this.serviceNotification.afficherInformation("Analyse de l'URL en cours auprès du backend...");
+
+    this.serviceExtracteur.analyserLienMediaObservable(adresseUrl).subscribe({
+      next: (resultat) => {
+        this.estEnCoursAnalyse = false;
+        if (resultat.estValide && resultat.media) {
+          this.routeur.navigate(['/resultats'], {
+            state: {
+              media: resultat.media,
+              formats: resultat.formatsDisponibles
+            }
+          });
+        } else {
+          this.serviceNotification.afficherErreur(resultat.messageErreur || "Impossible d'analyser ce lien.");
         }
-      });
-    } else {
-      this.serviceNotification.afficherErreur(resultat.messageErreur || "Impossible d'analyser ce lien.");
-    }
+      },
+      error: () => {
+        this.estEnCoursAnalyse = false;
+        this.serviceNotification.afficherErreur("Erreur de communication avec le serveur.");
+      }
+    });
   }
 }

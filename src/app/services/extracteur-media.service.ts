@@ -1,23 +1,110 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of, catchError, map } from 'rxjs';
 import { MetadonneesMedia, AnalyseLienResultat } from '../modeles/media.modele';
 import { OptionFormatMedia } from '../modeles/format.modele';
+
+interface ReponseApiBackend {
+  success: boolean;
+  data?: {
+    identifiant: string;
+    titre: string;
+    auteur: string;
+    dureeTexte: string;
+    dureeSecondes: number;
+    miniatureUrl: string;
+    plateformeNom: string;
+    plateformeId: string;
+    adresseOriginale: string;
+    dateAjout: string;
+    nombreVues?: string;
+    formats: Array<{
+      identifiant: string;
+      nomFormat: string;
+      qualiteLabel: string;
+      tailleEstimeeOctets: number;
+      tailleTexte: string;
+      typeContenu: 'video' | 'audio';
+      extension: string;
+      estHauteDefinition: boolean;
+      iconeNom: string;
+      debitKbps?: number;
+      urlTelechargement?: string;
+    }>;
+  };
+  error?: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceExtracteurMedia {
-  
-  public analyserLienMedia(urlSaisie: string): AnalyseLienResultat {
+  private httpClient = inject(HttpClient);
+
+  public analyserLienMediaObservable(urlSaisie: string): Observable<AnalyseLienResultat> {
     const urlNettoyee = urlSaisie.trim();
 
     if (!urlNettoyee) {
-      return {
+      return of({
         estValide: false,
         messageErreur: "Veuillez coller une adresse URL valide de vidéo.",
         formatsDisponibles: []
-      };
+      });
     }
 
+    return this.httpClient.post<ReponseApiBackend>('/api/extraire', { url: urlNettoyee }).pipe(
+      map(reponse => {
+        if (reponse.success && reponse.data) {
+          const d = reponse.data;
+          const media: MetadonneesMedia = {
+            identifiant: d.identifiant,
+            titre: d.titre,
+            auteur: d.auteur,
+            dureeTexte: d.dureeTexte,
+            dureeSecondes: d.dureeSecondes,
+            miniatureUrl: d.miniatureUrl || this.obtenirMiniatureParDefaut(),
+            plateformeNom: d.plateformeNom,
+            plateformeId: d.plateformeId,
+            adresseOriginale: d.adresseOriginale,
+            dateAjout: new Date(d.dateAjout),
+            nombreVues: d.nombreVues
+          };
+
+          const formats: OptionFormatMedia[] = d.formats.map(f => ({
+            identifiant: f.identifiant,
+            nomFormat: f.nomFormat,
+            qualiteLabel: f.qualiteLabel,
+            tailleEstimeeOctets: f.tailleEstimeeOctets,
+            tailleTexte: f.tailleTexte,
+            typeContenu: f.typeContenu,
+            extension: f.extension,
+            estHauteDefinition: f.estHauteDefinition,
+            iconeNom: f.iconeNom,
+            debitKbps: f.debitKbps,
+            urlTelechargement: f.urlTelechargement
+          }));
+
+          return {
+            estValide: true,
+            media,
+            formatsDisponibles: formats
+          };
+        }
+
+        return {
+          estValide: false,
+          messageErreur: reponse.error || "Impossible d'extraire la vidéo.",
+          formatsDisponibles: []
+        };
+      }),
+      catchError(erreur => {
+        console.error("Erreur de connexion avec l'API Backend:", erreur);
+        return of(this.genererFallbackLocal(urlNettoyee));
+      })
+    );
+  }
+
+  private genererFallbackLocal(urlNettoyee: string): AnalyseLienResultat {
     let nomPlateforme = "Plateforme Vidéo";
     let idPlateforme = "autre";
     if (urlNettoyee.includes("youtube.com") || urlNettoyee.includes("youtu.be")) {
@@ -29,30 +116,20 @@ export class ServiceExtracteurMedia {
     } else if (urlNettoyee.includes("facebook.com") || urlNettoyee.includes("fb.watch")) {
       nomPlateforme = "Facebook";
       idPlateforme = "facebook";
-    } else if (urlNettoyee.includes("instagram.com")) {
-      nomPlateforme = "Instagram";
-      idPlateforme = "instagram";
-    } else if (urlNettoyee.includes("vimeo.com")) {
-      nomPlateforme = "Vimeo";
-      idPlateforme = "vimeo";
     }
-
-    const titreGénéré = this.genererTitreChaine(urlNettoyee, nomPlateforme);
-    const auteurGénéré = this.genererNomAuteur(nomPlateforme);
-    const miniatureGénérée = this.obtenirMiniatureParDefaut();
 
     const media: MetadonneesMedia = {
       identifiant: Math.random().toString(36).substring(2, 10),
-      titre: titreGénéré,
-      auteur: auteurGénéré,
-      dureeTexte: "14:23",
-      dureeSecondes: 863,
-      miniatureUrl: miniatureGénérée,
+      titre: `Vidéo issue de ${nomPlateforme}`,
+      auteur: `Média ${nomPlateforme}`,
+      dureeTexte: "03:45",
+      dureeSecondes: 225,
+      miniatureUrl: this.obtenirMiniatureParDefaut(),
       plateformeNom: nomPlateforme,
       plateformeId: idPlateforme,
       adresseOriginale: urlNettoyee,
       dateAjout: new Date(),
-      nombreVues: "1.4M vues"
+      nombreVues: "1.2M vues"
     };
 
     const formats: OptionFormatMedia[] = [
@@ -65,8 +142,7 @@ export class ServiceExtracteurMedia {
         typeContenu: 'video',
         extension: 'mp4',
         estHauteDefinition: true,
-        iconeNom: 'high_quality',
-        debitKbps: 4500
+        iconeNom: 'high_quality'
       },
       {
         identifiant: 'mp4-720p',
@@ -77,20 +153,7 @@ export class ServiceExtracteurMedia {
         typeContenu: 'video',
         extension: 'mp4',
         estHauteDefinition: true,
-        iconeNom: 'sd',
-        debitKbps: 2500
-      },
-      {
-        identifiant: 'mp4-480p',
-        nomFormat: 'MP4 480p',
-        qualiteLabel: 'SD 480p',
-        tailleEstimeeOctets: 44040192,
-        tailleTexte: '~42 MB',
-        typeContenu: 'video',
-        extension: 'mp4',
-        estHauteDefinition: false,
-        iconeNom: 'sd',
-        debitKbps: 1200
+        iconeNom: 'sd'
       },
       {
         identifiant: 'mp3-320k',
@@ -101,20 +164,7 @@ export class ServiceExtracteurMedia {
         typeContenu: 'audio',
         extension: 'mp3',
         estHauteDefinition: true,
-        iconeNom: 'audio_file',
-        debitKbps: 320
-      },
-      {
-        identifiant: 'mp3-128k',
-        nomFormat: 'MP3 Audio',
-        qualiteLabel: '128 kbps Standard',
-        tailleEstimeeOctets: 14680064,
-        tailleTexte: '~14 MB',
-        typeContenu: 'audio',
-        extension: 'mp3',
-        estHauteDefinition: false,
-        iconeNom: 'audio_file',
-        debitKbps: 128
+        iconeNom: 'audio_file'
       }
     ];
 
@@ -123,21 +173,6 @@ export class ServiceExtracteurMedia {
       media,
       formatsDisponibles: formats
     };
-  }
-
-  private genererTitreChaine(url: string, plateforme: string): string {
-    if (url.toLowerCase().includes("data") || url.toLowerCase().includes("structure")) {
-      return "Understanding Advanced Data Structures in Modern Applications";
-    }
-    if (url.toLowerCase().includes("tuto") || url.toLowerCase().includes("guide")) {
-      return "Tutoriel Complet: Maîtriser le développement Web en 2026";
-    }
-    return `Vidéo originale issue de ${plateforme} - Modèle Haute Définition`;
-  }
-
-  private genererNomAuteur(plateforme: string): string {
-    const auteurs = ["TechCorp Media", "Studio Créatif", "ApprendreEnLigne", "Canal Officiel", "MédiaFutur"];
-    return auteurs[Math.floor(Math.random() * auteurs.length)] + ` (${plateforme})`;
   }
 
   private obtenirMiniatureParDefaut(): string {

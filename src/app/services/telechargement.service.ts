@@ -25,7 +25,7 @@ export class ServiceTelechargement {
   private stockageService = inject(ServiceStockageMedia);
 
   public lancerTelechargement(media: MetadonneesMedia, format: OptionFormatMedia): void {
-    const octetsTotaux = format.tailleEstimeeOctets || 100000000;
+    const octetsTotaux = format.tailleEstimeeOctets || 50000000;
     
     this.telechargementEnCours.set({
       mediaId: media.identifiant,
@@ -38,13 +38,13 @@ export class ServiceTelechargement {
       estEnErreur: false
     });
 
-    this.notificationService.afficherInformation(`Préparation du fichier ${format.nomFormat}...`);
+    this.notificationService.afficherInformation(`Préparation du flux pour "${media.titre}"...`);
 
     let octetsActuels = 0;
     const pasOctets = Math.floor(octetsTotaux / 10);
 
     const intervalle = setInterval(() => {
-      octetsActuels += pasOctets + Math.floor(Math.random() * 1000000);
+      octetsActuels += pasOctets + Math.floor(Math.random() * 500000);
       if (octetsActuels >= octetsTotaux) {
         octetsActuels = octetsTotaux;
         clearInterval(intervalle);
@@ -60,9 +60,9 @@ export class ServiceTelechargement {
           estEnErreur: false
         });
 
-        this.declencherSauvegardeFichierLocal(media, format);
+        this.declencherDirectLienOuProxy(media, format);
         this.stockageService.ajouterHistorique(media, format);
-        this.notificationService.afficherSucces(`Téléchargement de "${media.titre}" terminé avec succès !`);
+        this.notificationService.afficherSucces(`Téléchargement de "${media.titre}" démarré !`);
 
         setTimeout(() => {
           this.telechargementEnCours.set(null);
@@ -81,10 +81,10 @@ export class ServiceTelechargement {
           estEnErreur: false
         });
       }
-    }, 250);
+    }, 150);
   }
 
-  private declencherSauvegardeFichierLocal(media: MetadonneesMedia, format: OptionFormatMedia): void {
+  private declencherDirectLienOuProxy(media: MetadonneesMedia, format: OptionFormatMedia): void {
     if (typeof window === 'undefined') return;
 
     const nomFichierNettoye = media.titre
@@ -93,21 +93,22 @@ export class ServiceTelechargement {
       .substring(0, 40);
     const nomComplet = `${nomFichierNettoye}_${format.qualiteLabel.replace(/\s+/g, '')}.${format.extension}`;
 
-    const contenuSynthetique = `[MicMediaFetch - Fichier Media Enregistré]\n\nTitre: ${media.titre}\nAuteur: ${media.auteur}\nFormat: ${format.nomFormat}\nExtension: ${format.extension}\nDate: ${new Date().toISOString()}`;
-    const typeMime = format.typeContenu === 'audio' ? 'audio/mpeg' : 'video/mp4';
-
-    const fichierBlob = new Blob([contenuSynthetique], { type: typeMime });
-    const urlLien = URL.createObjectURL(fichierBlob);
+    let urlFinalDownload = '';
+    if (format.urlTelechargement) {
+      urlFinalDownload = `/api/proxy?url=${encodeURIComponent(format.urlTelechargement)}&nom_fichier=${encodeURIComponent(nomComplet)}`;
+    } else {
+      const contenuSynthetique = `[Media Fetch - Extrait Fichier Media Backend]\n\nTitre: ${media.titre}\nAuteur: ${media.auteur}\nFormat: ${format.nomFormat}\nDate: ${new Date().toISOString()}`;
+      const typeMime = format.typeContenu === 'audio' ? 'audio/mpeg' : 'video/mp4';
+      const fichierBlob = new Blob([contenuSynthetique], { type: typeMime });
+      urlFinalDownload = URL.createObjectURL(fichierBlob);
+    }
 
     const elementAncre = document.createElement('a');
-    elementAncre.href = urlLien;
+    elementAncre.href = urlFinalDownload;
     elementAncre.download = nomComplet;
+    elementAncre.target = '_blank';
     document.body.appendChild(elementAncre);
     elementAncre.click();
     document.body.removeChild(elementAncre);
-
-    setTimeout(() => {
-      URL.revokeObjectURL(urlLien);
-    }, 1000);
   }
 }

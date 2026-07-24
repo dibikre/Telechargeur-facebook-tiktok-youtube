@@ -11,4 +11,5 @@ export interface OptionFormatMedia {
   estHauteDefinition: boolean;
   iconeNom: string;
   debitKbps?: number;
+  urlTelechargement?: string;
 }
