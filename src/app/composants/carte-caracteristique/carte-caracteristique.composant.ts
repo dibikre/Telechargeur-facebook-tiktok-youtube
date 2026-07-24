@@ -12,11 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
         <mat-icon class="text-3xl">{{ iconeMat }}</mat-icon>
       </div>
 
-      <h3 class="text-xl font-bold text-on-background dark:text-inverse-on-surface mb-3">
+      <h3 class="text-xl font-bold text-black dark:text-black mb-3">
         {{ titreCaracteristique }}
       </h3>
 
-      <p class="text-on-surface-variant dark:text-outline-variant text-sm leading-relaxed">
+      <p class="text-black dark:text-black text-sm leading-relaxed">
         {{ descriptionCaracteristique }}
       </p>
     </div>

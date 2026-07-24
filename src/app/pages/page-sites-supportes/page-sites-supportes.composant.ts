@@ -16,7 +16,7 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
           Plateformes et Sites Supportés
         </h1>
         <p class="text-base md:text-lg text-on-surface-variant dark:text-outline-variant">
-          MicMediaFetch prend en charge l'extraction rapide en haute définition sur plus de 50 plateformes majeures.
+          MicMediaFetch prend en charge l'extraction rapide en haute définition pour Facebook, YouTube et TikTok.
         </p>
       </div>
 
@@ -26,7 +26,7 @@ import { InformationPlateforme } from '../../modeles/plateforme.modele';
           <mat-icon class="absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant">search</mat-icon>
           <input type="text"
                  [(ngModel)]="rechercheMotsCles"
-                 placeholder="Rechercher une plateforme (ex: YouTube, TikTok)..."
+                 placeholder="Rechercher une plateforme (Facebook, YouTube, TikTok)..."
                  class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest dark:bg-inverse-surface border border-outline-variant/60 dark:border-outline rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
       </div>
@@ -86,6 +86,16 @@ export class ComposantPageSitesSupportes {
 
   public plateformesOriginales: InformationPlateforme[] = [
     {
+      identifiant: 'fb',
+      nom: 'Facebook',
+      iconeMat: 'facebook',
+      domaineExemple: 'facebook.com',
+      couleurAccent: '#1877f2',
+      description: 'Support des vidéos publiques, Reels Facebook et directs enregistrés en haute qualité.',
+      formatsInclus: ['MP4 HD', 'MP4 SD', 'MP3 Audio'],
+      estActif: true
+    },
+    {
       identifiant: 'yt',
       nom: 'YouTube',
       iconeMat: 'play_circle',
@@ -103,46 +113,6 @@ export class ComposantPageSitesSupportes {
       couleurAccent: '#000000',
       description: 'Extraction directe des vidéos TikTok sans filigrane (Watermark) avec qualité originale.',
       formatsInclus: ['MP4 Sans Filigrane', 'MP3 Audio'],
-      estActif: true
-    },
-    {
-      identifiant: 'fb',
-      nom: 'Facebook',
-      iconeMat: 'facebook',
-      domaineExemple: 'facebook.com',
-      couleurAccent: '#1877f2',
-      description: 'Support des vidéos publiques, Reels Facebook et directs enregistrés en haute qualité.',
-      formatsInclus: ['MP4 HD', 'MP4 SD', 'MP3 Audio'],
-      estActif: true
-    },
-    {
-      identifiant: 'ig',
-      nom: 'Instagram',
-      iconeMat: 'camera_alt',
-      domaineExemple: 'instagram.com',
-      couleurAccent: '#e1306c',
-      description: 'Sauvegarde des Reels, vidéos IGTV et publications avec carrousels.',
-      formatsInclus: ['MP4 HD', 'JPG Miniature'],
-      estActif: true
-    },
-    {
-      identifiant: 'vm',
-      nom: 'Vimeo',
-      iconeMat: 'videocam',
-      domaineExemple: 'vimeo.com',
-      couleurAccent: '#1ab7ea',
-      description: 'Extraction des vidéos haute performance Vimeo en résolutions 1080p et 4K.',
-      formatsInclus: ['MP4 Full HD', 'MP4 720p'],
-      estActif: true
-    },
-    {
-      identifiant: 'tw',
-      nom: 'X / Twitter',
-      iconeMat: 'tag',
-      domaineExemple: 'x.com',
-      couleurAccent: '#1da1f2',
-      description: 'Téléchargement rapide de vidéos et GIF intégrés aux tweets.',
-      formatsInclus: ['MP4 720p', 'MP4 480p'],
       estActif: true
     }
   ];

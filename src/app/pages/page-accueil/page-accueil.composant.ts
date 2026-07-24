@@ -24,7 +24,7 @@ import { ServiceNotification } from '../../services/notification.service';
           Téléchargeur de Vidéos Gratuit
         </h1>
 
-        <p class="text-lg md:text-xl text-on-surface-variant dark:text-outline-variant font-normal leading-relaxed">
+        <p class="text-lg md:text-xl text-black dark:text-black font-normal leading-relaxed">
           Téléchargez des vidéos depuis YouTube, TikTok, Facebook et des centaines d'autres sites en haute qualité. Sans inscription.
         </p>
       </div>
