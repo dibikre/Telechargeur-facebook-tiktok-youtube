@@ -10,10 +10,11 @@ import { ElementFaq } from '../../modeles/faq.modele';
   template: `
     <main class="flex-grow flex flex-col items-center py-12 md:py-20 px-4 md:px-10 max-w-4xl mx-auto w-full animation-apparition">
       <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-5xl font-black text-on-background dark:text-inverse-on-surface tracking-tight mb-4">
+        <h1 class="text-3xl md:text-5xl font-black text-[#0000FF] dark:text-[#0000FF] tracking-tight mb-4">
           Foire Aux Questions (FAQ)
         </h1>
-        <p class="text-base md:text-lg text-on-surface-variant dark:text-outline-variant">
+
+        <p class="text-base md:text-lg text-black dark:text-black">
           Retrouvez les réponses à toutes vos questions sur l'utilisation de MicMediaFetch.
         </p>
       </div>

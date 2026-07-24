@@ -12,10 +12,10 @@ import { ComposantCarteEtape } from '../../composants/carte-etape/carte-etape.co
     <main class="flex-grow flex flex-col items-center justify-center px-4 md:px-10 py-16 md:py-24 max-w-7xl mx-auto w-full animation-apparition">
       
       <div class="text-center mb-16 max-w-3xl">
-        <h1 class="text-3xl md:text-5xl font-black text-on-background dark:text-inverse-on-surface tracking-tight mb-4">
+        <h1 class="text-3xl md:text-5xl font-black text-blue-600 dark:text-blue-600 tracking-tight mb-4">
           Comment télécharger des vidéos
         </h1>
-        <p class="text-base md:text-lg text-on-surface-variant dark:text-outline-variant font-normal">
+        <p class="text-base md:text-lg text-black dark:text-black font-normal">
           Obtenez vos médias préférés hors ligne en trois étapes simples et rapides.
         </p>
       </div>
